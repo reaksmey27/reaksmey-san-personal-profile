@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 255 255 255;
+    --surface: 255 255 255;
+    --line: 229 229 231;
+    --ink: 30 30 30;
+    --muted: 115 115 115;
+    --accent: 245 245 249;
+    --accent-ink: 139 92 246;
+    --avatar: radial-gradient(circle at 45% 50%, #c4b5fd, #7c3aed 55%, #4f46e5);
+    --avatar-border: rgba(255,255,255,0.4);
+  }
+  html.dark {
+    --bg: 15 15 18;
+    --surface: 22 22 26;
+    --line: 39 39 42;
+    --ink: 240 240 243;
+    --muted: 161 161 170;
+    --accent: 30 30 36;
+    --accent-ink: 124 58 237;
+    --avatar: radial-gradient(circle at 45% 50%, #a78bfa 0%, #7c3aed 100%);
+    --avatar-border: rgba(255,255,255,0.4);
+  }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bg font-sans text-ink antialiased; }
+  :focus-visible {
+    outline: 2px solid rgb(var(--ink));
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-accent text-accent-ink hover:bg-accent/90;
+  }
+  .btn-ghost {
+    @apply border border-line bg-surface text-ink hover:bg-ink/5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; }
+}
