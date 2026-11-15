@@ -11,7 +11,7 @@
     --muted: 115 115 115;
     --accent: 245 245 249;
     --accent-ink: 139 92 246;
-    --avatar: radial-gradient(circle at 45% 50%, #c4b5fd, #7c3aed 55%, #4f46e5);
+    --avatar: radial-gradient(circle at 45% 50%, #a78bfa 0%, #7c3aed 100%);
     --avatar-border: rgba(255,255,255,0.4);
   }
   html.dark {
@@ -22,8 +22,8 @@
     --muted: 161 161 170;
     --accent: 30 30 36;
     --accent-ink: 124 58 237;
-    --avatar: radial-gradient(circle at 45% 50%, #a78bfa 0%, #7c3aed 100%);
-    --avatar-border: rgba(255,255,255,0.4);
+    --avatar: radial-gradient(circle at 45% 50%, #fff 0%, #a78bfa 100%);
+    --avatar-border: rgba(255,255,255,0.9);
   }
   html { scroll-behavior: smooth; }
   body { @apply bg-bg font-sans text-ink antialiased; }
@@ -42,7 +42,18 @@
     @apply bg-accent text-accent-ink hover:bg-accent/90;
   }
   .btn-ghost {
-    @apply border border-line bg-surface text-ink hover:bg-ink/5;
+    @apply border border-line bg-surface text-ink;
+  }
+  .btn-ghost:hover {
+    @apply bg-ink/5;
+  }
+  html.dark .btn-ghost {
+    border-color: rgb(var(--line));
+    background-color: rgb(var(--surface));
+    color: rgb(var(--ink));
+  }
+  html.dark .btn-ghost:hover {
+    background-color: rgb(var(--ink) / 0.15);
   }
 }
 

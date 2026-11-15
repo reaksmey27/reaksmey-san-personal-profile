@@ -34,7 +34,7 @@ export const profile: Profile = {
   /** Your deployed URL. Used for the QR code and the "copy link" button.
    *  Set this after the first Vercel deploy, e.g. 'https://your-site.vercel.app'.
    */
-  siteUrl: '',
+  siteUrl: 'https://reaksmey-san-personal-profile-neon.vercel.app/',
 
   // Social links ---------------------------------
   social: {
