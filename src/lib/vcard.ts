@@ -17,7 +17,7 @@ export function buildVCard(profile: Profile, links: SocialLink[], siteUrl: strin
   ]
   if (profile.email?.trim()) lines.push(`EMAIL;TYPE=INTERNET:${esc(profile.email.trim())}`)
   if (profile.phone?.trim()) lines.push(`TEL;TYPE=CELL:${esc(profile.phone.trim())}`)
-  links.forEach((l, i) => {
+  links.filter((l) => l.id !== 'email').forEach((l, i) => {
     lines.push(`item${i + 1}.URL:${l.url}`, `item${i + 1}.X-ABLabel:${esc(l.label)}`)
   })
   lines.push('END:VCARD')

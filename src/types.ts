@@ -3,6 +3,7 @@ export type SocialId =
   | 'tiktok'
   | 'youtube'
   | 'telegram'
+  | 'email'
   | 'linkedin'
   | 'github'
   | 'portfolio'

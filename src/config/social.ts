@@ -1,5 +1,5 @@
 import type { IconType } from 'react-icons'
-import { FaGlobe, FaLinkedin } from 'react-icons/fa6'
+import { FaEnvelope, FaGlobe, FaLinkedin } from 'react-icons/fa6'
 import { SiFacebook, SiGithub, SiTelegram, SiTiktok, SiYoutube } from 'react-icons/si'
 import type { SocialId } from '../types'
 import { profile } from './profile'

@@ -17,7 +17,7 @@ export const profile: Profile = {
     country: 'កម្ពុជា',
   },
   photo: '/profile.webp',
-  email: '', // optional, e.g. 'you@example.com'
+  email: 'reaksmeysan.official@gmail.com',
   phone: '', // optional, e.g. '+85512345678'
   siteUrl: 'https://reaksmey-san-personal-profile-neon.vercel.app',
   social: {

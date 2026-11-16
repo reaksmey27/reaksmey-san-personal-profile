@@ -5,9 +5,8 @@ export default function SocialLink({ id, label, url, Icon, bg, fg }: SocialLinkD
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Visit ${label} profile`}
+      {...(url.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+      aria-label={url.startsWith('mailto:') ? 'Send an email' : `Visit ${label} profile`}
       className="glass glass-hover group flex items-center gap-3 rounded-xl px-3 py-3 hover:-translate-y-0.5 hover:shadow-lg sm:gap-4 sm:px-4 sm:py-4"
     >
       <span
