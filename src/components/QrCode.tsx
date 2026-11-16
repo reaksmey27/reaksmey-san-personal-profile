@@ -1,3 +1,9 @@
+import { useState, useEffect } from 'react'
+import { Download } from 'lucide-react'
+import { getSiteUrl } from '../lib/links'
+import { profile } from '../config/profile'
+import QRCode from 'qrcode'
+
 export default function QrCodeSection() {
   const url = getSiteUrl()
   const [src, setSrc] = useState('')
@@ -6,7 +12,7 @@ export default function QrCodeSection() {
   useEffect(() => {
     let active = true
     QRCode.toDataURL(url, { width: 512, margin: 2, color: { dark: '#000000', light: '#ffffff' } })
-      .then((data) => active && setSrc(data))
+      .then((data: string) => active && setSrc(data))
       .catch(() => active && setError(true))
     return () => {
       active = false
