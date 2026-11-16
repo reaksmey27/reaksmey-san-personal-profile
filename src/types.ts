@@ -15,7 +15,14 @@ export interface Profile {
   city: string
   country: string
   /** Khmer text for the language switch. */
-  km?: { title: string; city: string; country: string }
+  km?: {
+    name: string
+    firstName: string
+    lastName: string
+    title: string
+    city: string
+    country: string
+  }
   /** Image path inside /public, or a full image URL. */
   photo: string
   /** Deployed URL. Used by the QR code and the copy/share buttons. */

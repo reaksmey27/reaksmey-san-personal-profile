@@ -1,14 +1,12 @@
 import { useState } from 'react'
-import { Copy, QrCode, Share2, UserPlus } from 'lucide-react'
+import { Copy, QrCode, Share2 } from 'lucide-react'
 import { profile } from '../config/profile'
-import { socialLinks } from '../config/social'
 import { getSiteUrl } from '../lib/links'
-import { downloadVCard } from '../lib/vcard'
 import { useLang } from '../i18n/LangContext'
 import ActionButton from './ActionButton'
 
 export default function ActionBar() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const [copied, setCopied] = useState(false)
   const url = getSiteUrl()
 
@@ -52,14 +50,6 @@ export default function ActionBar() {
           label={t.qr}
         />
       </div>
-
-      <button
-        type="button"
-        onClick={() => downloadVCard(lang === 'km' && profile.km ? { ...profile, ...profile.km } : profile, socialLinks, url)}
-        className="btn btn-ghost mt-2 w-full text-accent-ink sm:mt-3"
-      >
-        <UserPlus size={18} aria-hidden /> {t.saveContact}
-      </button>
 
       {/* Announces the copy result to screen readers */}
       <span role="status" aria-live="polite" className="sr-only">

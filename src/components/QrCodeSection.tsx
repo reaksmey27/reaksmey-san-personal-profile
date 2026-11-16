@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react'
 import QRCode from 'qrcode'
 import { Download } from 'lucide-react'
-import { profile } from '../config/profile'
+import { profile, getDisplayProfile } from '../config/profile'
 import { getSiteUrl } from '../lib/links'
 import { useLang } from '../i18n/LangContext'
+import type { Profile } from '../types'
+
+function getDisplayProfileForVc(): Profile {
+  const { lang } = useLang()
+  return getDisplayProfile(profile, lang)
+}
 
 export default function QrCodeSection() {
   const { t } = useLang()
@@ -35,13 +41,12 @@ export default function QrCodeSection() {
             {failed && <span className="p-3 text-xs text-zinc-600">{t.qrFailed}</span>}
           </div>
         </div>
-        <p className="mt-3 max-w-full break-all text-xs text-muted">{url}</p>
-        <a
-          href={src ?? undefined}
-          download={`${profile.firstName}-${profile.lastName}-QR.png`}
-          aria-disabled={!src}
-          className="btn btn-ghost mt-4 aria-disabled:pointer-events-none aria-disabled:opacity-50 sm:mt-5"
-        >
+        <p className="mt-3 max-w-full break-all text-xs text-muted">{url}</p>          <a
+            href={src ?? undefined}
+            download={`${getDisplayProfileForVc().firstName}-${getDisplayProfileForVc().lastName}-QR.png`}
+            aria-disabled={!src}
+            className="btn btn-ghost mt-4 aria-disabled:pointer-events-none aria-disabled:opacity-50 sm:mt-5"
+          >
           <Download size={18} aria-hidden /> {t.qrDownload}
         </a>
       </div>

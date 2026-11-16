@@ -42,9 +42,11 @@
   }
   html { scroll-behavior: smooth; }
   /* Khmer script needs a little more line height */
-  html[lang='km'] body { line-height: 1.75; }
-  /* Letter-spacing breaks Khmer glyph shaping */
-  html[lang='km'] * { letter-spacing: normal !important; text-transform: none !important; }
+  html[lang='km'] body, html[lang='km'] * { line-height: 1.75; }  /* Khmer script must use Kantumruy Pro (exact Google Fonts family name), never the fallback */
+  html[lang='km'] body, html[lang='km'] * { font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', 'Noto Sans Khmer', 'system-ui', sans-serif !important; line-height: 1.75 !important; letter-spacing: normal !important; text-transform: none !important; }
+
+  /* Khmer script must use Kantumru Pro, never the fallback */
+
   body {
     @apply bg-bg font-sans text-ink antialiased;
     min-height: 100vh;

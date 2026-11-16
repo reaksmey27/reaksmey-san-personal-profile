@@ -1,5 +1,12 @@
 import type { Profile } from '../types'
 
+export function getDisplayProfile(profile: Profile, lang: 'en' | 'km'): Profile {
+  if (lang === 'km' && profile.km) {
+    return { ...profile, ...profile.km }
+  }
+  return profile
+}
+
 /**
  * Edit this file to change what the page shows.
  * Social links with an empty string are hidden.
@@ -12,6 +19,9 @@ export const profile: Profile = {
   city: 'Phnom Penh',
   country: 'Cambodia',
   km: {
+    name: 'សាន រស្មី',
+    firstName: 'សាន',
+    lastName: 'រស្មី',
     title: 'អ្នកអភិវឌ្ឍន៍គេហទំព័រ | អ្នករចនា UI/UX',
     city: 'ភ្នំពេញ',
     country: 'កម្ពុជា',

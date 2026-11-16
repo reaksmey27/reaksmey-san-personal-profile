@@ -13,13 +13,13 @@ export default function Header() {
       >
         <img
           src={profile.photo}
-          alt={`Portrait of ${profile.name}`}
+          alt={`Portrait of ${text.name || profile.name}`}
           className="h-full w-full object-cover object-[50%_20%]"
         />
       </div>
 
       <h1 className="mt-4 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-        {profile.name}
+        {text.name || profile.name}
       </h1>
       {profile.email?.trim() && (
         <a

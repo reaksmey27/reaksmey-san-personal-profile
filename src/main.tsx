@@ -4,6 +4,7 @@ import App from './App'
 import { LangProvider } from './i18n/LangContext'
 import './index.css'
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <LangProvider>

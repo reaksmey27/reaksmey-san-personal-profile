@@ -1,6 +1,13 @@
 import type { Profile } from '../types'
 import type { SocialLink } from '../config/social'
 
+export function getDisplayProfile(profile: Profile, lang: 'en' | 'km'): Profile {
+  if (lang === 'km' && profile.km) {
+    return { ...profile, ...profile.km }
+  }
+  return profile
+}
+
 const esc = (v: string) =>
   v.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,')
 
@@ -25,12 +32,13 @@ export function buildVCard(profile: Profile, links: SocialLink[], siteUrl: strin
 }
 
 /** Triggers a .vcf download in the browser. */
-export function downloadVCard(profile: Profile, links: SocialLink[], siteUrl: string) {
-  const blob = new Blob([buildVCard(profile, links, siteUrl)], { type: 'text/vcard;charset=utf-8' })
+export function downloadVCard(profile: Profile, links: SocialLink[], siteUrl: string, lang: 'en' | 'km' = 'en') {
+  const display = getDisplayProfile(profile, lang)
+  const blob = new Blob([buildVCard(display, links, siteUrl)], { type: 'text/vcard;charset=utf-8' })
   const href = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = href
-  a.download = `${profile.firstName}-${profile.lastName}.vcf`
+  a.download = `${display.firstName}-${display.lastName}.vcf`
   document.body.appendChild(a)
   a.click()
   a.remove()
