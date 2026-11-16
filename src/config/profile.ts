@@ -11,7 +11,14 @@ export const profile: Profile = {
   title: 'Web Developer | UI/UX Designer',
   city: 'Phnom Penh',
   country: 'Cambodia',
-  photo: '/profile.png',
+  km: {
+    title: 'អ្នកអភិវឌ្ឍន៍គេហទំព័រ | អ្នករចនា UI/UX',
+    city: 'ភ្នំពេញ',
+    country: 'កម្ពុជា',
+  },
+  photo: '/profile.webp',
+  email: '', // optional, e.g. 'you@example.com'
+  phone: '', // optional, e.g. '+85512345678'
   siteUrl: 'https://reaksmey-san-personal-profile-neon.vercel.app',
   social: {
     facebook: 'https://www.facebook.com/share/1DsuUHGMBJ/?mibextid=wwXIfr',

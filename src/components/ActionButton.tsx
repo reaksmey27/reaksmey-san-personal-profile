@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
 
+// Mobile: icon stacked above the label so text never wraps.
+// sm and up: icon beside the label. Frosted glass look.
 const styles =
-  'flex flex-1 items-center justify-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5 text-sm font-semibold text-muted transition-colors hover:bg-ink/5 hover:text-ink'
+  'glass glass-hover flex min-w-0 flex-1 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-2 py-3 text-xs font-semibold text-muted hover:text-ink sm:flex-row sm:gap-2 sm:px-3 sm:py-2.5 sm:text-sm'
 
 type Props = {
   icon: ReactNode
@@ -9,7 +11,7 @@ type Props = {
   ariaLabel: string
 } & ({ onClick: () => void; href?: never } | { href: string; onClick?: never })
 
-/** Small outlined button used in the copy / share / QR row. Renders a link when `href` is set. */
+/** Small glass button used in the copy / share / QR row. Renders a link when `href` is set. */
 export default function ActionButton({ icon, label, ariaLabel, onClick, href }: Props) {
   if (href) {
     return (

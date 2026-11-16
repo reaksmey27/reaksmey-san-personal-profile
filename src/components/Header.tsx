@@ -1,7 +1,10 @@
 import { MapPin } from 'lucide-react'
 import { profile } from '../config/profile'
+import { useLang } from '../i18n/LangContext'
 
 export default function Header() {
+  const { lang } = useLang()
+  const text = lang === 'km' && profile.km ? profile.km : profile
   return (
     <header className="flex flex-col items-center pb-6 pt-4 text-center">
       <div
@@ -18,11 +21,11 @@ export default function Header() {
       <h1 className="mt-4 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
         {profile.name}
       </h1>
-      <p className="mt-2 text-base font-semibold text-accent-ink sm:text-lg">{profile.title}</p>
+      <p className="mt-2 text-base font-semibold text-accent-ink sm:text-lg">{text.title}</p>
       <p className="mt-1 flex flex-wrap items-center justify-center gap-1 text-sm text-muted dark:text-ink">
         <MapPin size={16} className="shrink-0" aria-hidden />
         <span>
-          {profile.city}, {profile.country}
+          {text.city}, {text.country}
         </span>
       </p>
     </header>

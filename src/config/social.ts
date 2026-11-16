@@ -16,7 +16,7 @@ interface PlatformStyle {
 /** Display order, labels and brand colors. URLs come from profile.ts. */
 const PLATFORMS: PlatformStyle[] = [
   { id: 'facebook', label: 'Facebook', Icon: SiFacebook, bg: '#1877F2', fg: '#FFFFFF' },
-  { id: 'tiktok', label: 'TikTok', Icon: SiTiktok, bg: '#25F4EE', fg: '#000000' },
+  { id: 'tiktok', label: 'TikTok', Icon: SiTiktok, bg: '#000000', fg: '#FFFFFF' },
   { id: 'youtube', label: 'YouTube', Icon: SiYoutube, bg: '#FF0000', fg: '#FFFFFF' },
   { id: 'telegram', label: 'Telegram', Icon: SiTelegram, bg: '#24A1DE', fg: '#FFFFFF' },
   { id: 'linkedin', label: 'LinkedIn', Icon: FaLinkedin, bg: '#0A66C2', fg: '#FFFFFF' },

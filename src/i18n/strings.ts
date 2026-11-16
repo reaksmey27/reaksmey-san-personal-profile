@@ -1,0 +1,43 @@
+export type Lang = 'en' | 'km'
+
+/** All interface text. To add a language, add a key here and to `Lang`. */
+export const strings = {
+  en: {
+    skip: 'Skip to content',
+    copyLink: 'Copy link',
+    copied: 'Copied!',
+    copiedSr: 'Profile link copied to clipboard',
+    copyAria: 'Copy profile link',
+    share: 'Share',
+    shareAria: 'Share profile',
+    qr: 'QR code',
+    qrAria: 'Go to the QR code',
+    saveContact: 'Save contact',
+    qrTitle: 'Scan to open this profile',
+    qrDownload: 'Download QR code',
+    qrLoading: 'Loading...',
+    qrFailed: 'QR code could not be created.',
+    switchTo: 'Switch to Khmer',
+    switchLabel: 'ខ្មែរ',
+    themeTo: (t: string) => `Switch to ${t} theme`,
+  },
+  km: {
+    skip: 'រំលងទៅមាតិកា',
+    copyLink: 'ចម្លងតំណ',
+    copied: 'បានចម្លង!',
+    copiedSr: 'បានចម្លងតំណទៅក្ដារតម្បៀតខ្ទាស់',
+    copyAria: 'ចម្លងតំណទំព័រ',
+    share: 'ចែករំលែក',
+    shareAria: 'ចែករំលែកទំព័រ',
+    qr: 'កូដ QR',
+    qrAria: 'ទៅកាន់កូដ QR',
+    saveContact: 'រក្សាទុកទំនាក់ទំនង',
+    qrTitle: 'ស្កេនដើម្បីបើកទំព័រនេះ',
+    qrDownload: 'ទាញយកកូដ QR',
+    qrLoading: 'កំពុងផ្ទុក...',
+    qrFailed: 'មិនអាចបង្កើតកូដ QR បានទេ។',
+    switchTo: 'ប្តូរទៅភាសាអង់គ្លេស',
+    switchLabel: 'EN',
+    themeTo: (t: string) => (t === 'dark' ? 'ប្តូរទៅរចនាបថងងឹត' : 'ប្តូរទៅរចនាបថភ្លឺ'),
+  },
+} as const

@@ -4,15 +4,23 @@
 
 @layer base {
   :root {
-    --bg: 255 255 255;
+    --bg: 238 242 255;
     --surface: 255 255 255;
     --line: 229 229 231;
     --ink: 30 30 30;
-    --muted: 115 115 115;
+    --muted: 95 95 105;
     --accent: 225 235 255;
     --accent-ink: 99 91 255;
     --avatar: radial-gradient(circle at 40% 35%, #c4b5fd 0%, #8b5cf6 45%, #6b21a8 100%);
     --avatar-border: rgba(255,255,255,0.55);
+
+    /* Glass */
+    --page-bg: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 50%, #dbeafe 100%);
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-hover: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.75);
+    --glass-shadow: 0 8px 32px rgba(60, 60, 140, 0.14);
+    --glass-highlight: rgba(255, 255, 255, 0.6);
   }
   html.dark {
     --bg: 15 15 18;
@@ -24,9 +32,26 @@
     --accent-ink: 139 92 246;
     --avatar: radial-gradient(circle at 40% 35%, #e9e2ff 0%, #a78bfa 45%, #6d28d9 100%);
     --avatar-border: rgba(255,255,255,0.95);
+
+    --page-bg: linear-gradient(135deg, #0b0b10 0%, #1a1033 50%, #0a1424 100%);
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-hover: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    --glass-highlight: rgba(255, 255, 255, 0.12);
   }
   html { scroll-behavior: smooth; }
-  body { @apply bg-bg font-sans text-ink antialiased; }
+  /* Khmer script needs a little more line height */
+  html[lang='km'] body { line-height: 1.75; }
+  /* Letter-spacing breaks Khmer glyph shaping */
+  html[lang='km'] * { letter-spacing: normal !important; text-transform: none !important; }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    min-height: 100vh;
+    background-image: var(--page-bg);
+    background-attachment: fixed;
+    background-size: cover;
+  }
   :focus-visible {
     outline: 2px solid rgb(var(--ink));
     outline-offset: 3px;
@@ -35,18 +60,50 @@
 }
 
 @layer components {
+  /* Frosted glass surface */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+  }
+  .glass-hover {
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .glass-hover:hover {
+    background: var(--glass-hover);
+  }
+
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-200;
   }
   .btn-ghost {
-    @apply border border-line bg-surface text-ink;
+    @apply glass glass-hover text-ink;
   }
-  .btn-ghost:hover {
-    @apply bg-ink/5;
+}
+
+/* Entrance animation */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up { animation: fade-up 0.5s ease-out both; }
+
+/* Fallbacks: no backdrop-filter support, or the user asked for less transparency */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgb(var(--surface) / 0.88); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: rgb(var(--surface));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition-duration: 0.01ms !important; }
+  .fade-up { animation: none; }
 }

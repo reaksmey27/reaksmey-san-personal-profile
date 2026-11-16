@@ -16,7 +16,7 @@ export default {
         'accent-ink': c('accent-ink'),
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        sans: ['Inter', 'Noto Sans Khmer', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
     },
   },
