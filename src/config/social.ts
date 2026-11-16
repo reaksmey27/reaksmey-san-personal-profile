@@ -1,80 +1,35 @@
-
 import type { IconType } from 'react-icons'
+import { FaGlobe, FaLinkedin } from 'react-icons/fa6'
+import { SiFacebook, SiGithub, SiTelegram, SiTiktok, SiYoutube } from 'react-icons/si'
+import type { SocialId } from '../types'
+import { profile } from './profile'
 
-import {
-  FaFacebook,
-  FaTiktok,
-  FaYoutube,
-  FaTelegram,
-  FaLinkedin,
-  FaGithub,
-  FaGlobe,
-} from 'react-icons/fa6'
-
-export interface SocialPlatform {
-  id: string
+interface PlatformStyle {
+  id: SocialId
   label: string
-  url: string
   Icon: IconType
+  /** Icon tile background and icon color. */
   bg: string
   fg: string
 }
 
-export const socialPlatforms: SocialPlatform[] = [
-  {
-    id: 'facebook',
-    label: 'Facebook',
-    url: 'https://www.facebook.com/share/1DsuUHGMBJ/?mibextid=wwXIfr',
-    Icon: FaFacebook,
-    bg: '#1877F2',
-    fg: '#FFFFFF',
-  },
-  {
-    id: 'tiktok',
-    label: 'TikTok',
-    url: 'https://www.tiktok.com/@smey_quality27',
-    Icon: FaTiktok,
-    bg: '#25F4EE',
-    fg: '#000000',
-  },
-  {
-    id: 'youtube',
-    label: 'YouTube',
-    url: 'https://youtube.com/@smeyquality27?si=wqbY9hgMVClPOeqQ',
-    Icon: FaYoutube,
-    bg: '#FF0000',
-    fg: '#FFFFFF',
-  },
-  {
-    id: 'telegram',
-    label: 'Telegram',
-    url: 'https://t.me/Smey_Quality27',
-    Icon: FaTelegram,
-    bg: '#24A1DE',
-    fg: '#FFFFFF',
-  },
-  {
-    id: 'linkedin',
-    label: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/reaksmey-san-354472399/',
-    Icon: FaLinkedin,
-    bg: '#0A66C2',
-    fg: '#FFFFFF',
-  },
-  {
-    id: 'github',
-    label: 'GitHub',
-    url: 'https://github.com/reaksmey27',
-    Icon: FaGithub,
-    bg: '#24292E',
-    fg: '#FFFFFF',
-  },
-  {
-    id: 'portfolio',
-    label: 'Portfolio',
-    url: 'https://smey-dev.site',
-    Icon: FaGlobe,
-    bg: '#635BFF',
-    fg: '#FFFFFF',
-  },
+/** Display order, labels and brand colors. URLs come from profile.ts. */
+const PLATFORMS: PlatformStyle[] = [
+  { id: 'facebook', label: 'Facebook', Icon: SiFacebook, bg: '#1877F2', fg: '#FFFFFF' },
+  { id: 'tiktok', label: 'TikTok', Icon: SiTiktok, bg: '#25F4EE', fg: '#000000' },
+  { id: 'youtube', label: 'YouTube', Icon: SiYoutube, bg: '#FF0000', fg: '#FFFFFF' },
+  { id: 'telegram', label: 'Telegram', Icon: SiTelegram, bg: '#24A1DE', fg: '#FFFFFF' },
+  { id: 'linkedin', label: 'LinkedIn', Icon: FaLinkedin, bg: '#0A66C2', fg: '#FFFFFF' },
+  { id: 'github', label: 'GitHub', Icon: SiGithub, bg: '#24292E', fg: '#FFFFFF' },
+  { id: 'portfolio', label: 'Portfolio', Icon: FaGlobe, bg: '#635BFF', fg: '#FFFFFF' },
 ]
+
+export interface SocialLink extends PlatformStyle {
+  url: string
+}
+
+/** Only platforms that have a URL. */
+export const socialLinks: SocialLink[] = PLATFORMS.map((p) => ({
+  ...p,
+  url: profile.social[p.id].trim(),
+})).filter((p) => p.url.length > 0)
